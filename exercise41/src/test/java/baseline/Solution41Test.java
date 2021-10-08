@@ -1,10 +1,8 @@
 package baseline;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,11 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Solution41")
 class Solution41Test {
 
-    private Solution41 test = new Solution41();
+    private final Solution41 test = new Solution41();
 
-    private File inputFile = new File("exercise41_input.txt");
-
-    private List<String> expectedUnsortedList = Arrays.asList(
+    private final List<String> expectedUnsortedList = Arrays.asList(
             "Ling, Mai",
             "Johnson, Jim",
             "Zarnecki, Sabrina",
@@ -27,7 +23,7 @@ class Solution41Test {
             "Xiong, Fong"
     );
 
-    private List<String> expectedSortedList = Arrays.asList(
+    private final List<String> expectedSortedList = Arrays.asList(
             "Johnson, Jim",
             "Jones, Aaron",
             "Jones, Chris",
@@ -49,7 +45,7 @@ class Solution41Test {
     @Test
     void sortNameList() {
 
-        List<String> actual = test.buildNameList();
+        List<String> actual = test.sortNameList(expectedUnsortedList);
 
         assertEquals(expectedSortedList, actual);
 

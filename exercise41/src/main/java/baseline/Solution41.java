@@ -10,25 +10,29 @@ CONSTRAINT:
 
 package baseline;
 
-import java.io.File;
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+
+import static java.lang.String.format;
 
 public class Solution41 {
 
-    File inputFile = new File("exercise41_input.txt");
-    File outputFile = new File("exercise41_output.txt");
-
     public static void main(String[] args) {
 
-        //Build nameList from the input file
-        //  see buildNameList()
+        Solution41 instance = new Solution41();
 
-        //Sort nameList
-        //  see sortNameList()
+        //Build unsortedNameList from the input file
+        List<String> unsortedNameList = instance.buildNameList();
 
-        //Output the sorted nameList to the output file
-        //  see outputNameList()
+        //Sort unsortedNameList
+        List<String> sortedNameList = instance.sortNameList(unsortedNameList);
+
+        //Output the sortedNameList to the output file
+        instance.outputNameList(sortedNameList);
 
     }
 
@@ -48,28 +52,46 @@ public class Solution41 {
          */
 
         //Create a new List<String> called nameList
-        //While there is line to read
-            //Read in the line
-            //Add the line to nameList
-        //Return nameList
+        List<String> nameList = new ArrayList<>();
 
-        return new ArrayList<>(); //just so nothing breaks ;)
+        //Open input file
+        Scanner input = getScanner();
+
+        //While there is line to read
+        while(true) {
+            assert input != null;               //SonarLint was here
+            if (!input.hasNextLine()) break;
+
+            //Read in the line
+            String line = input.nextLine();
+
+            //Add the line to nameList
+            nameList.add(line);
+
+        }
+
+        input.close();
+
+        //Return nameList
+        return nameList;
     }
 
     public List<String> sortNameList(List<String> unsortedList) {
 
         /*
         Takes in a List<String> and sorts it alphabetically.
-        Returns a List<String> containing the storted strings.
+        Returns a List<String> containing the sorted strings.
          */
 
         //Sort the List using the Collection.sort feature built into this lovely Java language of ours.
-        //Return the sorted List.
+        Collections.sort(unsortedList);
 
-        return new ArrayList<>(); //just so nothing breaks ;)
+        //Return the sorted List.
+        return unsortedList;
+
     }
 
-    private void outputNameList() {
+    private void outputNameList(List<String> sortedList) {
 
         /*
         Outputs the passed List<String> that states the total number of "names", a dividing line, and each element of
@@ -83,11 +105,43 @@ public class Solution41 {
         xxxxxxxx
          */
 
-        //Output total number of "names"
-        //Output dividing line
-        //For each element of nameList
-            //Print the stored string
-        //Return nameList
+        StringBuilder outputBuilder = new StringBuilder();
 
+        //Output total number of "names"
+        outputBuilder.append(format("Total of %d names%n", sortedList.size()));
+
+        //Output dividing line
+        outputBuilder.append(format("%s%n", "-----------------"));
+
+        //For each element of nameList
+        for(String name : sortedList) {
+
+            //Print the stored string
+            outputBuilder.append(format("%s%n", name));
+
+        }
+
+        String outputString = outputBuilder.toString();
+        printToFile(outputString);
+
+
+    }
+
+    private void printToFile(String msg) {
+
+        try {
+            try (FileWriter out = new FileWriter(Paths.get("exercise41_output.txt").toFile())) {
+                out.write(msg);
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+
+    private Scanner getScanner() {
+
+        try {
+            return new Scanner(new File("exercise41_input.txt"));
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
+
+        return null;
     }
 }
