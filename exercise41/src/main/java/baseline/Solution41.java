@@ -23,6 +23,7 @@ public class Solution41 {
 
     public static void main(String[] args) {
 
+        //Creating working instance of Solution41
         Solution41 instance = new Solution41();
 
         //Build unsortedNameList from the input file
@@ -59,7 +60,7 @@ public class Solution41 {
 
         //While there is line to read
         while(true) {
-            assert input != null;               //SonarLint was here
+            assert input != null;               //SonarLint was here lol
             if (!input.hasNextLine()) break;
 
             //Read in the line
@@ -70,6 +71,7 @@ public class Solution41 {
 
         }
 
+        //Close the file scanner
         input.close();
 
         //Return nameList
@@ -105,12 +107,13 @@ public class Solution41 {
         xxxxxxxx
          */
 
+        //Create a new StringBuilder to handle constructing the String output
         StringBuilder outputBuilder = new StringBuilder();
 
-        //Output total number of "names"
+        //Output total number of Strings/"names" in the list
         outputBuilder.append(format("Total of %d names%n", sortedList.size()));
 
-        //Output dividing line
+        //Output dividing line for formatting purposes
         outputBuilder.append(format("%s%n", "-----------------"));
 
         //For each element of nameList
@@ -121,7 +124,10 @@ public class Solution41 {
 
         }
 
+        //Convert outputBuilder to a String
         String outputString = outputBuilder.toString();
+
+        //Pass the string
         printToFile(outputString);
 
 
@@ -129,19 +135,38 @@ public class Solution41 {
 
     private void printToFile(String msg) {
 
+        /*
+        This is the result of SonarLint having issues with having a try/catch loop.
+        It works and sets off 0 SonarLint errors.
+        Is it ugly? I don't know, I consider it unique (;
+         */
+
         try {
             try (FileWriter out = new FileWriter(Paths.get("exercise41_output.txt").toFile())) {
+
+                //Write the message to console
                 out.write(msg);
+
             }
         } catch (IOException e) { e.printStackTrace(); }
     }
 
     private Scanner getScanner() {
 
+        /*
+        Handles a weird problem I was having with creating the scanner object.
+        All this function does is return a created scanner in a try/catch block.
+        It's just to simplify the code.
+         */
+
         try {
+
+            //Create a new Scanner for the designated input file
             return new Scanner(new File("exercise41_input.txt"));
+
         } catch (FileNotFoundException e) { e.printStackTrace(); }
 
+        //In case of error, return null
         return null;
     }
 }
