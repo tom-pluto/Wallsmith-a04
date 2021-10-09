@@ -5,16 +5,5 @@
 
 package baseline;
 
-public record Person(String lastName, String firstName, double salaryAmount) {
-
-    public String getFirstName() {
-        return firstName;
-    }
-    public String getLastName() {
-        return lastName;
-    }
-    public double getSalaryAmount() {
-        return salaryAmount;
-    }
-
-}
+//Little record declaration to handle the data pulled out of the CSV
+public record Person(String lastName, String firstName, double salaryAmount) {}

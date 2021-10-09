@@ -1,3 +1,8 @@
+/*
+ *  UCF COP3330 Fall 2021 Assignment 4 Solutions
+ *  Copyright 2021 Thomas Wallsmith
+ */
+
 package baseline;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,21 +26,21 @@ class PersonTest {
     @Test
     void getFirstName() {
 
-        assertEquals("Seymour",test.getFirstName());
+        assertEquals("Seymour",test.firstName());
 
     }
 
     @Test
     void getLastName() {
 
-        assertEquals("Butts",test.getLastName());
+        assertEquals("Butts",test.lastName());
 
     }
 
     @Test
     void getSalaryAmount() {
 
-        assertEquals(999999,test.getSalaryAmount());
+        assertEquals(999999,test.salaryAmount());
 
     }
 }
