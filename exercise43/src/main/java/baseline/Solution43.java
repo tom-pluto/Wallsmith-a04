@@ -5,72 +5,134 @@
 
 package baseline;
 
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Solution43 {
 
-    private static Scanner CONSOLE = new Scanner(System.in);
+    private static final Scanner CONSOLE = new Scanner(System.in);
 
     public static void main(String[] args) {
 
+        //Create an instance of Solution43
+        Solution43 instance = new Solution43();
+
         //Get website's name
-        //calls getStringFromUser("Site name: ")
+        String websiteName = instance.getStringFromUser("Site name: ");
 
         //Get author's name
-        //calls getStringFromUser("Author: ")
+        String authorName = instance.getStringFromUser("Author: ");
 
         //Get if there should be a JavaScript folder
-        //calls getBooleanFromUser("Do you want a folder for JavaScript? ")
+        boolean wantJSFolder = instance.getBooleanFromUser("Do you want a folder for JavaScript? ");
 
         //Get if there should be a CSS folder
-        //calls getBooleanFromUser("Do you want a folder for CSS? ")
+        boolean wantCSSFolder = instance.getBooleanFromUser("Do you want a folder for CSS? ");
 
         //Generate index.html containing the name of the site inside the <title> tag and the author in a <meta> tag.
-        //calls generateWebsite( )
+        instance.generateWebsite(websiteName, authorName, wantJSFolder, wantCSSFolder);
 
     }
 
     private String getStringFromUser(String prompt) {
 
         //Print the prompt to the console
-        //Return the consoles input as a string
+        System.out.printf("%s", prompt);
 
-        return "";
+        //Return the consoles input as a string
+        return CONSOLE.nextLine();
+
     }
 
     private boolean getBooleanFromUser(String prompt) {
 
-        //Print the prompt to the console
-        //Read the console's input
-
         //Create boolean output variable
-        //If the input == y (non case sensitive btw)
-            //Set the output variable to true
-        //Else
-            //Set the output variable to false
+        boolean output = false;
+
+        //Loop
+        while(true) {
+
+            //Print the prompt to the console
+            System.out.printf("%s", prompt);
+
+            //Read the console's input
+            String consoleInput = CONSOLE.nextLine();
+
+            //Attempt at converting y/n input into boolean output
+            if (consoleInput.equalsIgnoreCase("y") || consoleInput.equalsIgnoreCase("n")) {
+
+                if(consoleInput.equalsIgnoreCase("y")) output = true;
+                if(consoleInput.equalsIgnoreCase("n")) output = false;
+                break;
+
+            } else { //Invalid Input
+
+                System.out.printf("%s%n", "Please enter a valid Y/N input.");
+
+            }
+
+        }
 
         //Return the output variable
+        return output;
 
-        return false;
     }
 
     public void generateWebsite(String websiteName, String authorName, boolean wantJSFolder, boolean wantCSSFolder) {
 
-        //Generate ./website/websiteName
-        //Print "Created ./website/websiteName" to the console
+        //Generate ./website/websiteName/
+        try {
+            Files.createDirectories(Paths.get(String.format("website/%s", websiteName)));
 
-        //Generate blank index.html file in websiteName directory
-        //Write the needed HTML data to the file
-        //Print "Created ./website/websiteName/index.html" to the console
+            //Print "Created ./website/websiteName" to the console
+            System.out.printf("Created ./website/%s%n", websiteName);
 
-        //If wantCSSFolder is true
-            //Generate ./website/websiteName/css/
-            //Write "Created ./website/websiteName/css/"
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-        //If wantJSFolder is true
-            //Generate ./website/websiteName/js/
-            //Print "Created ./website/websiteName/js/"
+        try {
+
+            //Generate blank index.html file in websiteName directory
+            Files.createFile(Paths.get(String.format("website/%s/index.html", websiteName)));
+
+            //Write the needed HTML data to the file
+            try (FileWriter fileWriter = new FileWriter(Paths.get(String.format("website/%s/index.html", websiteName)).toString())) {
+
+                fileWriter.write(String.format("<head><title>%s</title><meta name=\"author\" content=\"%s\"></head>", websiteName, authorName));
+
+            }
+
+            //Print "Created ./website/websiteName/index.html" to the console
+            System.out.printf("Created ./website/%s/index.html%n", websiteName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //If wantJSFolder is true, create a new js folder
+        if(wantJSFolder) createFolder(String.format("website/%s/js/", websiteName));
+
+        //If wantCSSFolder is true, create a new css folder
+        if(wantCSSFolder) createFolder(String.format("website/%s/css/", websiteName));
 
     }
 
+    private void createFolder(String folderPath) {
+
+        try {
+
+            //Generate ./website/websiteName/css/
+            Files.createDirectory(Paths.get(folderPath));
+
+            //Write "Created ./website/websiteName/css/"
+            System.out.printf("Created ./%s%n", folderPath);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
