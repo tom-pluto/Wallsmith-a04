@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Solution44 {
+
+    + main()
+    - getUsersProductName()
+
+}
+
+class ProductInventory {
+
+    - Map<String, Product> inventoryMap;
+
+    + setInventoryFromJson(File jsonFile)
+    + search(String productName)
+    - getFileContentsAsString(File targetFile)
+
+}
+
+class Product {
+
+    - productName : String
+    - productPrice : double
+    - productQuantity : int
+
+    + String getName()
+    + double getPrice()
+    + int getQuantity()
+
+    + void setName()
+    + void setPrice()
+    + void setQuantity()
+
+}
+
+ProductInventory o-- Product
+Solution44 <|-- ProductInventory
+
+@enduml
