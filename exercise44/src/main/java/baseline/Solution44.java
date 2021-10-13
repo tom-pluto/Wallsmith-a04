@@ -17,13 +17,11 @@ package baseline;
 
 import java.io.File;
 import java.nio.file.Paths;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class Solution44 {
 
-    private final static File INPUTJSON = new File(Paths.get("exercise44_input.json").toUri());
+    private static final File JSONFILE = new File(Paths.get("exercise44_input.json").toUri());
 
     public static void main(String[] args) {
 
@@ -42,15 +40,17 @@ public class Solution44 {
             String targetProductName = instance.getUsersProductName(console);
 
             // If ProductInventory.search(userChoice) == true, break the loop
-            if(inventory.search(INPUTJSON, targetProductName)) break;
+            if(inventory.search(JSONFILE, targetProductName)) break;
 
         }
+
+        console.close();
     }
 
     public String getUsersProductName(Scanner inputScanner) {
 
         // Print "What is the product name? "
-        System.out.printf("What is the product name? ");
+        System.out.print("What is the product name? ");
 
         // Return the input
         return inputScanner.nextLine();

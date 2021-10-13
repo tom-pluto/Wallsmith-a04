@@ -18,9 +18,16 @@ class Solution44Test {
     void setUp() {
 
         testInstance = new Solution44();
-        simulatedInput = new Scanner("And one day we will die\n" +
-                "and our ashes will fly\n" +
-                "from the Aeroplane Over The Sea\n");
+        simulatedInput = new Scanner("""
+                And one day we will die
+                And our ashes will fly
+                From the aeroplane over the sea
+                But for now, we are young
+                Let us lay in the sun
+                And count every beautiful thing we can see
+                Love to be
+                In the arms of all I'm keeping here with me
+                """);
 
     }
 
