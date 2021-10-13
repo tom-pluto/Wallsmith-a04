@@ -6,11 +6,17 @@
 
 package baseline;
 
+/*
+ *  Dr. Hollander excused the record type SonarLint warning in the Discord chat:
+ *  "Dr. Struggle — 10/13/2021 at 4:26 PM
+ *  you can ignore Record types"
+ */
+
 public class Product {
 
-    private String name;
-    private double price;
-    private int quantity;
+    private final String name;
+    private final double price;
+    private final int quantity;
 
     public Product(String name, double price, int quantity) {
         this.name = name;
@@ -27,17 +33,5 @@ public class Product {
     public int getQuantity() {
         return quantity;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-
 
 }
