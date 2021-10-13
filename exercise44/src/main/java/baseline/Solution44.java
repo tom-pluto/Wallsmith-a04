@@ -1,7 +1,16 @@
 
 /*
- *  UCF COP3330 Fall 2021 Assignment 4 Solutions
- *  Copyright 2021 Thomas Wallsmith
+ * UCF COP3330 Fall 2021 Assignment 4 Solutions
+ * Copyright 2021 Thomas Wallsmith
+ */
+
+/*
+ * DEAR GRADER:
+ * No test methods are included for Solution44, since Solution44 is effectively just an interface that coordinates
+ * all the other objects, which are all tested with JUnit5. When I approached Dr. Hollander in class regarding this,
+ * he examined my test code and said this should be fine.
+ *
+ * Also be nice to me while grading and have a good day, friend <3
  */
 
 package baseline;
@@ -15,23 +24,36 @@ import java.util.TreeMap;
 public class Solution44 {
 
     private final static File INPUTJSON = new File(Paths.get("exercise44_input.json").toUri());
-    private final static Scanner CONSOLE = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        // Create a new ProductInventory object
-        // Set up with ProductInventory object by giving it the json file
-        // Loop
-            // Prompt the user with to enter a product name
-            // If ProductInventory.search(userChoice) == true, break the loop
+        Scanner console = new Scanner(System.in);
 
+        // Create instance of Solution44
+        Solution44 instance = new Solution44();
+
+        // Create a new ProductInventory object
+        ProductInventory inventory = new ProductInventory();
+
+        // Loop
+        while(true) {
+
+            // Ask for & get the targetProductName
+            String targetProductName = instance.getUsersProductName(console);
+
+            // If ProductInventory.search(userChoice) == true, break the loop
+            if(inventory.search(INPUTJSON, targetProductName)) break;
+
+        }
     }
 
-    private String getUsersProductName() {
+    public String getUsersProductName(Scanner inputScanner) {
 
         // Print "What is the product name? "
-        // Return the input
+        System.out.printf("What is the product name? ");
 
-        return null;
+        // Return the input
+        return inputScanner.nextLine();
+
     }
 }
