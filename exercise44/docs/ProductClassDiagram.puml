@@ -12,8 +12,8 @@ class ProductInventory {
 
     - Map<String, Product> inventoryMap;
 
-    + setInventoryFromJson(File jsonFile)
     + search(String productName)
+    - setInventoryFromJson(File jsonFile)
     - getFileContentsAsString(File targetFile)
 
 }
