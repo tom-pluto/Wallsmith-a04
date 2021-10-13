@@ -1,6 +1,5 @@
 package baseline;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -56,7 +55,5 @@ class ProductInventoryTest {
                         "iPod"),
                 "2-3. iPod Test"
         );
-
-
     }
 }

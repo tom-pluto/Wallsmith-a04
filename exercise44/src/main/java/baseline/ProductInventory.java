@@ -1,16 +1,11 @@
 package baseline;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Reader;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class ProductInventory {
@@ -25,10 +20,18 @@ public class ProductInventory {
 
     public boolean search(File jsonFile, String targetProduct) {
 
+        /*
+        Takes in a jsonFile that is used to create a Map of all products in the inventory.
+        After setting the inventory data to the json data, the Map is searched for a passed targetProduct string.
+
+        If the product is found, the function will print the attributes of that Product object and return true.
+        Else, the method will print that nothing was found and return false.
+         */
+
         // Call setInventoryFromJson with the passed jsonFile to set up Map data structure
         setInventoryFromJson(jsonFile);
 
-        // Initalize returnValue to false
+        // Initialize returnValue to false
         boolean returnValue = false;
 
         // If the productName exists in the productMap
@@ -46,6 +49,11 @@ public class ProductInventory {
             returnValue = true;
 
         }
+        else {
+
+            System.out.printf("%s%n", "Sorry, that product was not found in our inventory.");
+
+        }
 
         // Return the returnValue
         return returnValue;
@@ -53,6 +61,10 @@ public class ProductInventory {
     }
 
     private void setInventoryFromJson(File jsonFile) {
+
+        /*
+        Sets the inventoryMap of the object to a Map<String, Product> containing data from a passed jsonFile.
+         */
 
         // Convert jsonFile to a jsonString, chopping off the bits we don't want
         String jsonFullString = getFileContentsAsString(jsonFile);
@@ -76,27 +88,44 @@ public class ProductInventory {
 
     private String getFileContentsAsString(File targetFile) {
 
-
-        // For use specifically in the setInventoryFromJson method
+        /*
+        Returns the contents of the passed targetFile as a String
+         */
 
         // Create StringBuilder for output
         StringBuilder stringBuilder = new StringBuilder();
 
         // Create Scanner for targetFile
-        Scanner fileScanner = null;
-        try {
-            fileScanner = new Scanner(targetFile);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+        Scanner fileScanner = getFileScanner(targetFile);
 
         // Scan every line of targetFile, adding to the output StringBuilder
-        while(fileScanner.hasNextLine()) stringBuilder.append(fileScanner.nextLine());
+        while(true) {
+            assert fileScanner != null;
+            if (!fileScanner.hasNextLine()) break;
+            stringBuilder.append(fileScanner.nextLine());
+        }
 
         // Returns the StringBuilder as a regular String
         return stringBuilder.toString();
 
     }
 
+    private Scanner getFileScanner(File targetFile) {
 
+        /*
+        Structural function to encapsulate the code needed to generate a new Scanner to a particular file.
+        Just keeps the rest of the code cleaner and allows for easier reuse.
+         */
+
+        Scanner fileScanner = null;
+
+        try {
+            fileScanner = new Scanner(targetFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return fileScanner;
+
+    }
 }

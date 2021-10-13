@@ -15,6 +15,7 @@ class ProductInventory {
     + search(String productName)
     - setInventoryFromJson(File jsonFile)
     - getFileContentsAsString(File targetFile)
+    - getFileScanner()
 
 }
 
