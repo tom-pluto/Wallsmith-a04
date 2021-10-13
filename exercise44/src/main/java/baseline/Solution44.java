@@ -24,7 +24,6 @@ public class Solution44 {
         // Loop
             // Prompt the user with to enter a product name
             // If ProductInventory.search(userChoice) == true, break the loop
-            // Else, tell the user that the object was not found
 
     }
 
@@ -35,6 +34,4 @@ public class Solution44 {
 
         return null;
     }
-
-
 }
