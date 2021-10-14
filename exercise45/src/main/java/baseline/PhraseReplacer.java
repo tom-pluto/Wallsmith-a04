@@ -5,7 +5,8 @@
 
 package baseline;
 
-import java.io.File;
+import java.io.*;
+import java.util.Scanner;
 
 public class PhraseReplacer {
 
@@ -17,20 +18,7 @@ public class PhraseReplacer {
         Returns the phrase attribute of the PhraseReplacer object
          */
 
-        // Return this.phrase
-
-        return null;
-    }
-
-    public void setPhrase(String newPhrase) {
-
-        /*
-        Sets the instance's phrase variable to the passed newPhrase
-         */
-
-        // Set the object's phrase to newPhrase
-
-        return;
+        return this.phrase;
     }
 
     public void setPhraseFromTextFile(File inputFile) {
@@ -40,10 +28,39 @@ public class PhraseReplacer {
          */
 
         // Create a new Scanner object for the inputFile
-        // Read in contents of inputFile
-        // Store the contents as this.phrase
+        Scanner inputScanner = null;
+        try {
+            inputScanner = new Scanner(inputFile);
+        } catch (FileNotFoundException e) {
+            System.out.printf("%s was not able to be opened!%n", inputFile.getName());
+            e.printStackTrace();
+        }
 
-        return;
+        // Read in contents of inputFile
+        StringBuilder fileContents = new StringBuilder();
+        while(inputScanner.hasNextLine()) {
+
+            fileContents.append(inputScanner.nextLine());
+            if(inputScanner.hasNextLine()) fileContents.append("\n");
+
+        }
+
+        inputScanner.close();
+
+        // Store the contents as this.phrase
+        this.phrase = fileContents.toString();
+
+    }
+
+    public void setPhrase(String newPhrase) {
+
+        /*
+        Sets the instance's phrase variable to the passed newPhrase
+         */
+
+        // Set the object's phrase to newPhrase
+        this.phrase = newPhrase;
+
     }
 
     public void replaceWordInPhrase(String targetWord, String newWord) {
@@ -53,19 +70,38 @@ public class PhraseReplacer {
          */
 
         // Initalize newPhrase to this.phrase
-        // Replace all instances of targetWord with newWord     (planning on using newPhrase.replace())
-        // Replace the current phrase with the newPhrase
+        String newPhrase = this.phrase;
 
-        return;
+        // Replace all instances of targetWord with newWord     (planning on using newPhrase.replace())
+        newPhrase = newPhrase.replace(targetWord, newWord);
+
+        // Replace the current phrase with the newPhrase
+        this.phrase = newPhrase;
+
     }
 
     public void outputPhraseToFile(File outputFile) {
 
-        // Create new Writer for outputFile
-        // Output this.phrase to the outputFile
+        /*
+        Outputs the currently stored phrase to the passed outputFile
+         */
 
-        return;
+        Writer outputWriter = null;
+        try {
+
+            // Create new Writer for outputFile
+            outputWriter = new FileWriter(outputFile);
+
+            // Output this.phrase to the outputFile
+            outputWriter.write(this.phrase);
+
+            outputWriter.close();
+
+        } catch (IOException e) {
+            System.out.printf("%s could not be written to!%n", outputFile.getName());
+            e.printStackTrace();
+        }
+
+
     }
-
-
 }

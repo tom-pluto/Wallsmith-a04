@@ -118,8 +118,8 @@ class PhraseReplacerTest {
         phraseReplacer.setPhrase(GIVEN_PHRASE);
         phraseReplacer.replaceWordInPhrase("it", "out");
 
-        String expected = phraseReplacer.getPhrase();
-        String actual = """
+        String actual = phraseReplacer.getPhrase();
+        String expected = """
                 Bop out!!!
                 Twist out!?
                 Pull out.
@@ -141,8 +141,7 @@ class PhraseReplacerTest {
     @Test
     void outputPhraseToFile() {
 
-        String givenPhrase = "Testing output\n" +
-                "Testing output, but there is a second line";
+        String givenPhrase = String.format("Testing output%nTesting newline");
 
         phraseReplacer.setPhrase(givenPhrase);
         phraseReplacer.outputPhraseToFile(testOutputPath.toFile());
@@ -161,9 +160,11 @@ class PhraseReplacerTest {
 
             stringBuilder.append(outputScanner.nextLine());
 
+            if(outputScanner.hasNextLine()) stringBuilder.append(String.format("%n"));
+
         }
 
-        assertEquals(stringBuilder.toString(), givenPhrase);
+        assertEquals(givenPhrase, stringBuilder.toString());
 
         outputScanner.close();
 
