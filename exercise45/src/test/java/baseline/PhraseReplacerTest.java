@@ -141,7 +141,10 @@ class PhraseReplacerTest {
     @Test
     void outputPhraseToFile() {
 
-        phraseReplacer.setPhrase("Testing output");
+        String givenPhrase = "Testing output\n" +
+                "Testing output, but there is a second line";
+
+        phraseReplacer.setPhrase(givenPhrase);
         phraseReplacer.outputPhraseToFile(testOutputPath.toFile());
 
         Scanner outputScanner = null;
@@ -151,6 +154,17 @@ class PhraseReplacerTest {
             fail();
             e.printStackTrace();
         }
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        while(outputScanner.hasNextLine()) {
+
+            stringBuilder.append(outputScanner.nextLine());
+
+        }
+
+        assertEquals(stringBuilder.toString(), givenPhrase);
+
         outputScanner.close();
 
     }
