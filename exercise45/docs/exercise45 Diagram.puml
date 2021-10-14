@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Solution45 {
+
+    + main()
+
+}
+
+class PhraseReplacer {
+
+    - phrase : String
+
+    + String getPhrase()
+    + void setPhraseFromTextFile(File inputFile)
+    + void setPhrase(String newPhrase)
+    + void replaceWordInPhrase(String targetWord, String newWord)
+    + void outputPhraseToFile(File outputFile)
+
+}
+
+Solution45 -- PhraseReplacer
+
+@enduml
