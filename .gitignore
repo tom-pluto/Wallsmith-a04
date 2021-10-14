@@ -2,3 +2,5 @@
 */.gradle/*
 */build/*
 */build/classes/java/main/*
+*/.idea/sonarlint/*
+*/.idea/sonarlint/issuestore/*
