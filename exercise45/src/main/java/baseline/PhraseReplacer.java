@@ -38,7 +38,9 @@ public class PhraseReplacer {
 
         // Read in contents of inputFile
         StringBuilder fileContents = new StringBuilder();
-        while(inputScanner.hasNextLine()) {
+        while(true) {
+            assert inputScanner != null;
+            if (!inputScanner.hasNextLine()) break;
 
             fileContents.append(inputScanner.nextLine());
             if(inputScanner.hasNextLine()) fileContents.append("\n");
@@ -69,7 +71,7 @@ public class PhraseReplacer {
         Replaces all instances of targetWord with newWord
          */
 
-        // Initalize newPhrase to this.phrase
+        // Initialize newPhrase to this.phrase
         String newPhrase = this.phrase;
 
         // Replace all instances of targetWord with newWord     (planning on using newPhrase.replace())
@@ -86,16 +88,11 @@ public class PhraseReplacer {
         Outputs the currently stored phrase to the passed outputFile
          */
 
-        Writer outputWriter = null;
-        try {
-
-            // Create new Writer for outputFile
-            outputWriter = new FileWriter(outputFile);
+        // Create new Writer for outputFile
+        try (Writer outputWriter = new FileWriter(outputFile)){
 
             // Output this.phrase to the outputFile
             outputWriter.write(this.phrase);
-
-            outputWriter.close();
 
         } catch (IOException e) {
             System.out.printf("%s could not be written to!%n", outputFile.getName());

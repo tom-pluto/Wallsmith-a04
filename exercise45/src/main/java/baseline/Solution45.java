@@ -5,8 +5,9 @@
 
 /*
  * DEAR GRADER:
- * There is no JUnit5 testing for the Solution45.java, mainly because all functionality exists in the PhraseReplacer
- * class. JUnit5 testing exists for that class, however I believe it is allowed since no state changes happen here.
+ * There is no JUnit5 testing for Solution45.java because all functionality exists in the PhraseReplacer class.
+ * Full JUnit5 testing exists for that class, however none is needed here because there simply isn't anything
+ * outside PhraseReplacer.
  */
 
 package baseline;
@@ -16,13 +17,10 @@ import java.nio.file.Paths;
 
 public class Solution45 {
 
-    private static final File INPUT_FILE = new File(Paths.get("exercise45_input.txt").toUri());         // CONSTANT
-    private static final File OUTPUT_FILE = new File(Paths.get("exercise45_output.txt").toUri());       // CONSTANT
+    private static final File INPUT_FILE = new File(Paths.get("exercise45_input.txt").toUri());
+    private static final File OUTPUT_FILE = new File(Paths.get("exercise45_output.txt").toUri());
 
     public static void main(String[] args) {
-
-        // Create new instance of Solution45
-        Solution45 instance = new Solution45();
 
         // Create a new PhraseReplacer object called replacer
         PhraseReplacer replacer = new PhraseReplacer();
@@ -37,5 +35,4 @@ public class Solution45 {
         replacer.outputPhraseToFile(OUTPUT_FILE);
 
     }
-
 }

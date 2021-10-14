@@ -5,10 +5,8 @@
 
 package baseline;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
+import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.*;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -22,14 +20,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("PhaseReplacer")
 class PhraseReplacerTest {
 
-    @TempDir
     private Path testDirectory;
     private Path testInputPath;
     private Path testOutputPath;
 
     private PhraseReplacer phraseReplacer;
 
-    private String GIVEN_PHRASE = """
+    private final String GIVEN_PHRASE = """
                 Bop it!!!
                 Twist it!?
                 Pull it.
@@ -52,12 +49,14 @@ class PhraseReplacerTest {
 
         phraseReplacer = new PhraseReplacer();
 
+        testDirectory = Files.createDirectory(Paths.get("Temp/"));
         testInputPath = Files.createFile(testDirectory.resolve(Paths.get("test_exercise45_input.txt")));
         testOutputPath = Files.createFile(testDirectory.resolve(Paths.get("test_exercise45_output.txt")));
 
         Files.write(testInputPath, Collections.singleton(GIVEN_PHRASE));
 
     }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -91,9 +90,8 @@ class PhraseReplacerTest {
     void setPhraseFromTextFile() {
 
         phraseReplacer.setPhraseFromTextFile(testInputPath.toFile());
-        String expected = GIVEN_PHRASE;
         String actual = phraseReplacer.getPhrase();
-        assertEquals(expected, actual);
+        assertEquals(GIVEN_PHRASE, actual);
 
     }
 
@@ -167,6 +165,17 @@ class PhraseReplacerTest {
         assertEquals(givenPhrase, stringBuilder.toString());
 
         outputScanner.close();
+
+    }
+
+    @AfterEach
+    void tearDown() {
+
+        try {
+            FileUtils.deleteDirectory(testDirectory.toFile());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
