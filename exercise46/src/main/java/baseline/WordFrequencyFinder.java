@@ -6,7 +6,8 @@
 package baseline;
 
 import java.io.File;
-import java.util.List;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class WordFrequencyFinder {
 
@@ -19,15 +20,35 @@ public class WordFrequencyFinder {
          */
 
         // Call setDataFromFile(input) to get the data set from the file
+        setDataFromFile(input);
 
         // Create a new StringBuilder called output
-        // For each element of wordList
-        // Add "word.word:" to the output
-        // Add word.frequency "*" to the output
-        // Add a newline to the output
-        // Return the converted stringBuilder
+        StringBuilder stringBuilder = new StringBuilder();
 
-        return "";
+        // For each element of wordList
+        for (int i = 0; i < wordList.size(); i++) {
+
+            // Set working Word from list
+            Word cur = wordList.get(i);
+
+            // Add "word.word:" to the output
+            stringBuilder.append(String.format("%-10s", cur.getName()+":"));
+
+            // Add word.frequency "*" to the output
+            for (int j = 0; j < cur.getFrequency(); j++) {
+
+                stringBuilder.append("*");
+
+            }
+
+            // Add a newline to the output, only if there is more info after this
+            if(i+1 < wordList.size()) stringBuilder.append("\n");
+
+        }
+
+        // Return the converted stringBuilder
+        return stringBuilder.toString();
+
     }
 
     private void setDataFromFile(File inputFile) {
@@ -37,14 +58,42 @@ public class WordFrequencyFinder {
          */
 
         // Create a new List<Word> called fileWordList
-        // Open a scanner to inputFile
-        // While there is another word to read
-            // Pull the word from the file
-            // If the word is in the fileWordList already, call word.incrementFrequency(1)
-            // If the word is not in the fileWordList, add it to the fileWordList
-        // Sort the fileWordList by highest frequency to lowest
-        // Replace the wordList with the fileWordList
+        Map<String, Word> wordMap = new TreeMap<>();
 
+        // Open a scanner to inputFile
+        Scanner inputScanner = null;
+        try {
+            inputScanner = new Scanner(inputFile);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // Creates a map of words
+        wordMap = createWordMap(wordMap, inputScanner);
+
+        // Convert Map to List and replace object's list
+        this.wordList = new ArrayList<>(wordMap.values());
+
+        inputScanner.close();
+    }
+
+    private Map<String, Word> createWordMap(Map<String, Word> wordMap, Scanner inputScanner) {
+
+        // While there is another word to read
+        while(inputScanner.hasNext()) {
+
+            // Pull the word from the file
+            String curWord = inputScanner.next();
+
+            // If the word is in the fileWordList already, call word.incrementFrequency(1)
+            if(wordMap.containsKey(curWord)) wordMap.get(curWord).incrementFrequency(1);
+
+            // Else, add the word to the map
+            else wordMap.put(curWord, new Word(curWord));
+
+        }
+
+        return wordMap;
     }
 
 }

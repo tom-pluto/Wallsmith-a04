@@ -8,6 +8,7 @@ package baseline;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -18,6 +19,7 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("WordFrequencyFinder")
 class WordFrequencyFinderTest {
 
     private final File TEMPDIR = new File(Paths.get("TEMP/").toUri());
@@ -58,9 +60,9 @@ class WordFrequencyFinderTest {
         assertEquals(expected, actual, "Base Case");
 
         String expected2 = """
-                ten:      **********
                 five:     *****
-                one:      *""";
+                one:      *
+                ten:      **********""";
         String actual2 = test.generateHistogram(TEST_CASE);
         assertEquals(expected2, actual2, "Test Case");
 

@@ -3,29 +3,33 @@
  *  Copyright 2021 Thomas Wallsmith
  */
 
+// SONARLINT COMPLIANT
+
 package baseline;
 
 public class Word {
 
-    private String word;
+    private final String name;
     private int frequency;
 
-    public Word(String word) {
+    public Word(String name) {
 
-        // Assign the passed word to this.word
+        // Assign the passed name to this.name
+        this.name = name;
+
         // Assign 1 to frequency
+        this.frequency = 1;
 
     }
 
-    public String getWord() {
+    public String getName() {
 
         /*
         A pretty standard getter for the word attribute of the object
          */
 
-        // Return this.word
+        return this.name;
 
-        return "";
     }
 
     public int getFrequency() {
@@ -34,9 +38,8 @@ public class Word {
         Another standard getter for the frequency attribute of the object
          */
 
-        // Return this.frequency
+        return this.frequency;
 
-        return 0;
     }
 
     public void incrementFrequency(int amount) {
@@ -45,9 +48,8 @@ public class Word {
         Adds the passed amount to the current value in this.frequency
          */
 
-        // Set this.frequency to frenquency + amount
+        this.frequency += amount;
 
-        return;
     }
 
 }

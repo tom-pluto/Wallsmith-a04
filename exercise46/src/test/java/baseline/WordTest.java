@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Word")
 class WordTest {
 
     private Word testWord;
@@ -25,7 +26,7 @@ class WordTest {
     @Test
     void getWord() {
 
-        assertEquals("Test", testWord.getWord());
+        assertEquals("Test", testWord.getName());
 
     }
 
