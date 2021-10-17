@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Person {
+
+    - lastName: String
+    - firstName: String
+    - salaryAmount: double
+
+    + String lastName()
+    + String firstName()
+    + String salaryAmount()
+
+}
+
+
+class PersonLister {
+
+    - personList: List<Person>
+
+    + List<Person> getPersonList()
+    + void createPersonList(File csvInputFile)
+    + String getPersonAsOutputString()
+    - private getData(File csvInputFile)
+    - private getScanner(File csvInputFile)
+
+}
+
+class Solution42 {
+
+    + main()
+
+}
+
+PersonLister o-- Person
+Solution42 -- PersonLister
+
+@enduml
