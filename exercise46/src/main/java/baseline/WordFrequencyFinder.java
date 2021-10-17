@@ -35,11 +35,7 @@ public class WordFrequencyFinder {
             stringBuilder.append(String.format("%-10s", cur.getName()+":"));
 
             // Add word.frequency "*" to the output
-            for (int j = 0; j < cur.getFrequency(); j++) {
-
-                stringBuilder.append("*");
-
-            }
+            stringBuilder.append("*".repeat(Math.max(0, cur.getFrequency())));
 
             // Add a newline to the output, only if there is more info after this
             if(i+1 < wordList.size()) stringBuilder.append("\n");
@@ -61,23 +57,27 @@ public class WordFrequencyFinder {
         Map<String, Word> wordMap = new TreeMap<>();
 
         // Open a scanner to inputFile
-        Scanner inputScanner = null;
+
         try {
-            inputScanner = new Scanner(inputFile);
+
+            Scanner inputScanner = new Scanner(inputFile);
+
+            // Creates a map of words
+            createWordMap(wordMap, inputScanner);
+
+            // Convert Map to List and replace object's list
+            this.wordList = new ArrayList<>(wordMap.values());
+
+            inputScanner.close();
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
 
-        // Creates a map of words
-        wordMap = createWordMap(wordMap, inputScanner);
 
-        // Convert Map to List and replace object's list
-        this.wordList = new ArrayList<>(wordMap.values());
-
-        inputScanner.close();
     }
 
-    private Map<String, Word> createWordMap(Map<String, Word> wordMap, Scanner inputScanner) {
+    private void createWordMap(Map<String, Word> wordMap, Scanner inputScanner) {
 
         // While there is another word to read
         while(inputScanner.hasNext()) {
@@ -92,8 +92,6 @@ public class WordFrequencyFinder {
             else wordMap.put(curWord, new Word(curWord));
 
         }
-
-        return wordMap;
     }
 
 }
