@@ -16,7 +16,7 @@ public class Solution46 {
         WordFrequencyFinder solver = new WordFrequencyFinder();
 
         // Print the result of solver.generateHistogram()
-        System.out.printf("%s", solver.generateHistogram(new File(Paths.get("exercise46_input.txt").toUri())));
+        System.out.printf("%s", solver.generateHistogram(new File(Paths.get("data/exercise46_input.txt").toUri())));
 
     }
 

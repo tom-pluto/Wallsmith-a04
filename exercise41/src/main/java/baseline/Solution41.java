@@ -21,7 +21,7 @@ public class Solution41 {
 
         // Check to see if the output file exists, and delete it if it does.
         try {
-            Files.deleteIfExists(Paths.get("exercise41_output.txt"));
+            Files.deleteIfExists(Paths.get("data/exercise41_output.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -32,7 +32,7 @@ public class Solution41 {
         // Print the result of solver.generateOutputFromFile()
         try {
 
-            Path outFile = Files.createFile(Paths.get("exercise41_output.txt"));
+            Path outFile = Files.createFile(Paths.get("data/exercise41_output.txt"));
             String outputString = solver.generateOutputFromFile();
             Files.writeString(outFile, outputString);
 

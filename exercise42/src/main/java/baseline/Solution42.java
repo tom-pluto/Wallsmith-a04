@@ -17,7 +17,7 @@ public class Solution42 {
 
     public static void main(String[] args) {
 
-        File csvInput = new File(Paths.get("exercise42_input.txt").toUri());
+        File csvInput = new File(Paths.get("data/exercise42_input.txt").toUri());
 
         PersonLister personLister = new PersonLister();
         personLister.createPersonList(csvInput);

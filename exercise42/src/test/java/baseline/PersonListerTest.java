@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PersonListerTest {
 
-    File CSV_INPUT_FILE = new File(Paths.get("exercise42_input.txt").toUri());
+    File CSV_INPUT_FILE = new File(Paths.get("data/exercise42_input.txt").toUri());
     PersonLister personLister;
 
     @BeforeEach

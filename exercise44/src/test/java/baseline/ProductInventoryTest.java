@@ -31,33 +31,33 @@ class ProductInventoryTest {
     void search() {
 
         assertTrue(testInventory.search(
-                new File(Paths.get("exercise44_input.json").toUri()),
+                new File(Paths.get("data/exercise44_input.json").toUri()),
                 "Widget"),
                 "1-1. Widget Test"
         );
         assertTrue(testInventory.search(
-                        new File(Paths.get("exercise44_input.json").toUri()),
+                        new File(Paths.get("data/exercise44_input.json").toUri()),
                         "Thing"),
                 "1-2. Thing Test"
         );
         assertTrue(testInventory.search(
-                        new File(Paths.get("exercise44_input.json").toUri()),
+                        new File(Paths.get("data/exercise44_input.json").toUri()),
                         "Doodad"),
                 "1-3. Thing Test"
         );
 
         assertFalse(testInventory.search(
-                        new File(Paths.get("exercise44_input.json").toUri()),
+                        new File(Paths.get("data/exercise44_input.json").toUri()),
                         "iPad"),
                 "2-1. iPad Test"
         );
         assertFalse(testInventory.search(
-                        new File(Paths.get("exercise44_input.json").toUri()),
+                        new File(Paths.get("data/exercise44_input.json").toUri()),
                         "iPhone"),
                 "2-2. iPhone Test"
         );
         assertFalse(testInventory.search(
-                        new File(Paths.get("exercise44_input.json").toUri()),
+                        new File(Paths.get("data/exercise44_input.json").toUri()),
                         "iPod"),
                 "2-3. iPod Test"
         );

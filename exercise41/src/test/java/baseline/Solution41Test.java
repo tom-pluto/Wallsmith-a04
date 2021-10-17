@@ -18,7 +18,7 @@ class Solution41Test {
 
     private final File TEST_DIR = new File(Paths.get("TEST_TEMP/").toUri());
     private final File EXPECTED_OUT = new File(Paths.get("TEST_TEMP/TEST_OUT1.txt").toUri());
-    private final Path ACTUAL_OUT = Paths.get("exercise41_output.txt");
+    private final Path ACTUAL_OUT = Paths.get("data/exercise41_output.txt");
 
     @BeforeEach
     void setUp() throws IOException {

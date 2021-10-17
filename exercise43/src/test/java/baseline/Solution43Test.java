@@ -40,13 +40,13 @@ class Solution43Test {
                 true,
                 true);
 
-        File websiteDirectory = new File(Paths.get("website/myWebsite/").toString());
+        File websiteDirectory = new File(Paths.get("data/website/myWebsite/").toString());
         websiteDirectory.deleteOnExit();
-        File indexFile = new File(Paths.get("website/myWebsite/index.html").toString());
+        File indexFile = new File(Paths.get("data/website/myWebsite/index.html").toString());
         indexFile.deleteOnExit();
-        File jsDirectory = new File(Paths.get("website/myWebsite/js/").toString());
+        File jsDirectory = new File(Paths.get("data/website/myWebsite/js/").toString());
         jsDirectory.deleteOnExit();
-        File cssDirectory = new File(Paths.get("website/myWebsite/css/").toString());
+        File cssDirectory = new File(Paths.get("data/website/myWebsite/css/").toString());
         cssDirectory.deleteOnExit();
 
         // First round of testing
@@ -77,7 +77,7 @@ class Solution43Test {
     @AfterEach
     void tearDown() throws IOException {
 
-        FileUtils.forceDelete("website");
+        FileUtils.forceDelete("data/website");
 
     }
 }

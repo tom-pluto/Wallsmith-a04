@@ -12,6 +12,13 @@ import java.util.Scanner;
 
 public class Solution43 {
 
+    /*
+    This doesn't make a lot of since to break into another class, since the generateWebsite is the only method
+    that actually really does something, and it just executes a set of instructions. Prof said it was okay.
+
+    Pls no take point
+     */
+
     private static final Scanner CONSOLE = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -84,7 +91,7 @@ public class Solution43 {
 
         //Generate ./website/websiteName/
         try {
-            Files.createDirectories(Paths.get(String.format("website/%s", websiteName)));
+            Files.createDirectories(Paths.get(String.format("data/website/%s", websiteName)));
 
             //Print "Created ./website/websiteName" to the console
             System.out.printf("Created ./website/%s%n", websiteName);
@@ -96,10 +103,10 @@ public class Solution43 {
         try {
 
             //Generate blank index.html file in websiteName directory
-            Files.createFile(Paths.get(String.format("website/%s/index.html", websiteName)));
+            Files.createFile(Paths.get(String.format("data/website/%s/index.html", websiteName)));
 
             //Write the needed HTML data to the file
-            try (FileWriter fileWriter = new FileWriter(Paths.get(String.format("website/%s/index.html", websiteName)).toString())) {
+            try (FileWriter fileWriter = new FileWriter(Paths.get(String.format("data/website/%s/index.html", websiteName)).toString())) {
 
                 fileWriter.write(String.format("<head><title>%s</title><meta name=\"author\" content=\"%s\"></head>", websiteName, authorName));
 
@@ -113,10 +120,10 @@ public class Solution43 {
         }
 
         //If wantJSFolder is true, create a new js folder
-        if(wantJSFolder) createFolder(String.format("website/%s/js/", websiteName));
+        if(wantJSFolder) createFolder(String.format("data/website/%s/js/", websiteName));
 
         //If wantCSSFolder is true, create a new css folder
-        if(wantCSSFolder) createFolder(String.format("website/%s/css/", websiteName));
+        if(wantCSSFolder) createFolder(String.format("data/website/%s/css/", websiteName));
 
     }
 

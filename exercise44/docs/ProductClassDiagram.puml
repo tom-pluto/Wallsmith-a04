@@ -36,6 +36,6 @@ class Product {
 }
 
 ProductInventory o-- Product
-Solution44 <|-- ProductInventory
+Solution44 -- ProductInventory
 
 @enduml

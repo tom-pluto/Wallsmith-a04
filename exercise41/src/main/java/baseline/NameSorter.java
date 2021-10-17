@@ -85,7 +85,7 @@ public class NameSorter {
         try {
 
             //Create a new Scanner for the designated input file
-            return new Scanner(new File("exercise41_input.txt"));
+            return new Scanner(new File("data/exercise41_input.txt"));
 
         } catch (FileNotFoundException e) { e.printStackTrace(); }
 

@@ -31,6 +31,5 @@ class NameSorterTest {
         String actual = test.generateOutputFromFile();
         assertEquals(expected.replaceAll(String.format("%n"),"\n"), actual.replaceAll(String.format("%n"),"\n"));
 
-
     }
 }

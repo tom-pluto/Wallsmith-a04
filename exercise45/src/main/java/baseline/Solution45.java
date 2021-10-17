@@ -17,8 +17,8 @@ import java.nio.file.Paths;
 
 public class Solution45 {
 
-    private static final File INPUT_FILE = new File(Paths.get("exercise45_input.txt").toUri());
-    private static final File OUTPUT_FILE = new File(Paths.get("exercise45_output.txt").toUri());
+    private static final File INPUT_FILE = new File(Paths.get("data/exercise45_input.txt").toUri());
+    private static final File OUTPUT_FILE = new File(Paths.get("data/exercise45_output.txt").toUri());
 
     public static void main(String[] args) {
 

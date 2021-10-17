@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WordFrequencyFinderTest {
 
     private final File TEMPDIR = new File(Paths.get("TEMP/").toUri());
-    private final File BASE_INPUT = new File(Paths.get("exercise46_input.txt").toUri());
+    private final File BASE_INPUT = new File(Paths.get("data/exercise46_input.txt").toUri());
     private final File TEST_CASE = new File(Paths.get("TEMP/test.txt").toUri());
 
     private WordFrequencyFinder test;
@@ -57,7 +57,7 @@ class WordFrequencyFinderTest {
                 mushroom: **
                 snake:    *""";
         String actual = test.generateHistogram(BASE_INPUT);
-        assertEquals(expected, actual, "Base Case");
+        assertEquals(expected, actual, "My Case");
 
         String expected2 = """
                 five:     *****

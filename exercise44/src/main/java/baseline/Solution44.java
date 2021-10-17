@@ -21,7 +21,7 @@ import java.util.Scanner;
 
 public class Solution44 {
 
-    private static final File JSONFILE = new File(Paths.get("exercise44_input.json").toUri());
+    private static final File JSONFILE = new File(Paths.get("data/exercise44_input.json").toUri());
 
     public static void main(String[] args) {
 
