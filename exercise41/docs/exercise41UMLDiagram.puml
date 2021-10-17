@@ -1,0 +1,23 @@
+@startuml
+
+class Solution41 {
+
+    + {static} main()
+
+}
+
+class NameSorter {
+
+    - nameList: List<String>
+
+    + String generateOutputFromFile(File fileInput)
+    - void buildNameList()
+    - void sortNameList()
+    - Scanner getScanner()
+    - String printNameList()
+
+}
+
+Solution41 -- NameSorter
+
+@enduml
