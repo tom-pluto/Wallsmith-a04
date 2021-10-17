@@ -1,0 +1,33 @@
+
+@startuml
+
+class Solution46 {
+
+    + main()
+
+}
+
+class WordFrequencyFinder {
+
+    - wordList: List<Word>
+
+    + String generateHistogram(File inputFile)
+    - void setDataFromFile(File inputFile)
+
+}
+
+class Word {
+
+    - word: String
+    - frequency: int
+
+    + String getWord()
+    + int getFrequency()
+    + void incrementFrequency(int amount)
+
+}
+
+WordFrequencyFinder o-- Word
+Solution46 -- WordFrequencyFinder
+
+@enduml
