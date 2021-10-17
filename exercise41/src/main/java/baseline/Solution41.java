@@ -19,11 +19,20 @@ public class Solution41 {
 
     public static void main(String[] args) {
 
+        // Check to see if the output file exists, and delete it if it does.
+        try {
+            Files.deleteIfExists(Paths.get("exercise41_output.txt"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Create a new instance of the NameSorter
         NameSorter solver = new NameSorter();
-        Path outFile;
+
+        // Print the result of solver.generateOutputFromFile()
         try {
 
-            outFile = Files.createFile(Paths.get("exercise41_output.txt"));
+            Path outFile = Files.createFile(Paths.get("exercise41_output.txt"));
             String outputString = solver.generateOutputFromFile();
             Files.writeString(outFile, outputString);
 

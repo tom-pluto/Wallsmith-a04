@@ -23,6 +23,8 @@ class Solution41Test {
     @BeforeEach
     void setUp() throws IOException {
 
+        Files.deleteIfExists(ACTUAL_OUT);
+
         Files.createDirectory(TEST_DIR.toPath());
         Files.createFile(EXPECTED_OUT.toPath());
 

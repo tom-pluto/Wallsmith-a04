@@ -114,14 +114,18 @@ public class NameSorter {
         outputBuilder.append(format("Total of %d names%n", this.nameList.size()));
 
         //Output dividing line for formatting purposes
-        outputBuilder.append(format("%s%n", "-----------------"));
+        outputBuilder.append(format("%s", "-----------------\n"));
+
+        int counter = 0;
 
         //For each element of nameList
         for(String name : this.nameList) {
 
             //Print the stored string
-            outputBuilder.append(format("%s%n", name));
+            outputBuilder.append(format("%s", name));
 
+            counter++;
+            if(counter != nameList.size()) outputBuilder.append("\n");
         }
 
         //Convert outputBuilder to a String
